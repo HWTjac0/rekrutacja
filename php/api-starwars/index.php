@@ -17,3 +17,68 @@
 // Display all starships provided through the API, with their properties
 // Each ship should have the names of pilots and names of films displayed (if none, indicate)
 // Each pilot should have its species also displayed
+require_once __DIR__ . "/vendor/autoload.php";
+
+use GuzzleHttp\Client;
+
+$client = new Client();
+
+$response = $client->request("GET", "https://swapi.dev/api/starships");
+$starships = json_decode($response->getBody());
+?>
+<style>
+  table, tr, td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+<h1>Statki kosmiczne 🚀</h1>
+<?php foreach( $starships->results as $starship): ?>
+<table>
+  <thead>
+    <tr>
+      <th>Atrybut</th>
+      <th>Wartość</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach($starship as $key => $property): ?>
+      <tr>
+        <td><?php echo $key   ?></td>
+        <td>
+        <?php 
+          if(!is_array($property)) {
+            echo $property;
+          } else if (empty($property)) {
+            echo "Brak";
+          } else {
+            echo "<ul>";
+            foreach ($property as $value) {
+              echo "<li>";
+              $contents = json_decode($client->request("GET", $value)->getBody());
+              $displayed_name = "";
+              if($key == "pilots") {
+                $displayed_name .= $contents->name . "";
+                if(!empty($contents->species)) {
+          
+                  $species = json_decode($client->request("GET", $contents->species[0])->getBody())->name;
+                  $displayed_name .= "- gatunek - " . $species;
+                } 
+              } else if ($key == "films") {
+                $displayed_name .= $contents->title;
+              } else {
+                $displayed_name .= "dupa";
+              }
+              echo $displayed_name;
+              echo "</li>";
+            }
+            echo "</ul>";
+          }
+        ?>
+        </td>
+      </tr>
+    <?php endforeach; ?>  
+  </tbody>
+</table>
+</br>
+<?php endforeach; ?>
