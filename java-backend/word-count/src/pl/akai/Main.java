@@ -1,5 +1,7 @@
 package pl.akai;
 
+import java.util.*;
+
 public class Main {
 
     private static String[] sentences = {
@@ -30,7 +32,20 @@ public class Main {
                 2. "tak" - 5
                 3. "z" - 2
         */
-        System.out.println("Hello world");
+        String[] words = String.join(" ", sentences).toLowerCase().split(" ");
+        HashMap<String, Integer> word_count = new HashMap<String, Integer>();
+        for (String word : words) {
+            word_count.merge(word, 1, Integer::sum);
+        }
+        
+        List<Map.Entry<String, Integer>> word_list = new ArrayList<>(word_count.entrySet());
+        word_list.sort((current, next) -> next.getValue().compareTo(current.getValue()));
+
+        for (int i = 0; i < 3 && i < word_list.size(); i++) {
+            Map.Entry<String, Integer> entry = word_list.get(i);
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
     }
 
 }
