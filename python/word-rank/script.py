@@ -2,6 +2,7 @@
 
 # input: array with multiple strings
 # expected output: rank of the 3 most often repeated words in given set of strings and number of times they occured, case insensitive
+from collections import Counter 
 
 sentences = [
     'Taki mamy klimat',
@@ -27,5 +28,6 @@ sentences = [
 # 2. "tak" - 5
 # 3. "z" - 2
 
-
+counted_words = Counter(" ".join(sentences).lower().split(" ")).most_common(3)
+print(counted_words)
 # Good luck! You can write all the code in this file.
