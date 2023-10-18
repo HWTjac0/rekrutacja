@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 h1 {
   margin-bottom: 16px;
 }
@@ -29,4 +31,46 @@ input {
 
 button {
   padding: 4px;
+}
+#checkboxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 150px);
+  grid-template-rows: repeat(3, 1fr);
+}
+.pokemons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+.pokemon__container{
+  display: grid;
+  justify-items: center;
+  max-width: 100%;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+.pokemon__titleWrapper, .pokemon__typesWrapper {
+  display: flex;
+  align-items: center;
+}
+.pokemon__typesWrapper {
+  gap: 5px;
+}
+.pokemon__titleWrapper {
+  gap: 3px;
+}
+.pokemon__id {
+  background: #3ea1ed;
+  padding: 2px 5px;
+  color: white;
+  border-radius: 5px;
+}
+.contentWrapper {
+  padding: 5px;
+}
+.pokemon__type {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: white;
+  background: #53db7c;
 }

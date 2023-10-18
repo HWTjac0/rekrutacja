@@ -7,7 +7,7 @@ class Importer:
         pass
 
     def read_tasks(self):
-        # TODO odczytaj plik i zdekoduj treść tutaj
+        
         pass
 
     def get_tasks(self):

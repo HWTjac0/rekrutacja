@@ -7,8 +7,53 @@
 // tutaj złapiemy sekcję, do której będziemy dodawać pokemony
 const pokemonsContainer = document.querySelector(".pokemons");
 
+
+
+function createPokemon(pokemon) {
+  const container = document.createElement("div")
+  const img = document.createElement("img");
+  
+  const name = document.createElement("h2");
+  const id = document.createElement("span");
+  const title = document.createElement("div");
+  title.classList.add("pokemon__titleWrapper");
+  title.appendChild(id);
+  title.appendChild(name);
+
+  container.classList.add("pokemon__container");
+  img.classList.add("pokemon__image");
+  name.classList.add("pokemon__name");
+  id.classList.add("pokemon__id");
+
+  name.textContent = pokemon.name;
+  id.textContent = pokemon.id;
+  img.src = pokemon.image;
+  
+  const typesContainer = document.createElement("div");
+  typesContainer.classList.add("pokemon__typesWrapper");
+  for(const type of pokemon.types) {
+    const typeElement = document.createElement("div");
+    typeElement.classList.add("pokemon__type");
+    typeElement.textContent = type;
+    typesContainer.appendChild(typeElement);
+  }
+  
+  const contentWrapper = document.createElement("div");
+  contentWrapper.classList.add("contentWrapper");
+  contentWrapper.appendChild(title);
+  contentWrapper.appendChild(typesContainer);
+
+  container.appendChild(img)
+  container.appendChild(contentWrapper);
+
+  return container;
+}
+
 function renderPokemons(pokemons) {
-  // uzupełnij tutaj
+  pokemonsContainer.innerHTML = "";
+  for (const pokemon of pokemons) {
+    pokemonsContainer.appendChild(createPokemon(pokemon))
+  } 
 }
 
 // następnie wykonaj uzupełnioną metodę z tablicą pokemons, aby sprawdzić czy wszystko działa
@@ -21,9 +66,16 @@ function renderPokemons(pokemons) {
   - filtrowanie po nazwie (wpisany fragment zawiera się w nazwie pokemona)
 */
 
-function filterPokemons(pokemons) {
-  // uzupełnij tutaj
-  // zwróć odfiltrowaną tablicę pokemonów
+function filterPokemons(pokemons, types, text) {
+  const filtered = [];
+  const regex = new RegExp(`${text}`, "i")
+  const contains = el => types.includes(el);
+  for(const pokemon of pokemons) {
+    if(regex.test(pokemon.name) && pokemon.types.some(contains)){
+      filtered.push(pokemon)
+    }
+  }
+  return filtered;
 }
 
 const form = document.querySelector("form");
@@ -31,7 +83,10 @@ const form = document.querySelector("form");
 function submitForm(event) {
   event.preventDefault();
   // następnie wykonaj uzupełnioną metodę z tablicą pokemons, aby sprawdzić czy wszystko działa
-  // renderPokemons(filterPokemons(pokemons));
+  const checked = [...document.querySelectorAll("input[type=checkbox]:checked")].map(el => el.id)
+  const text = document.getElementById("pokemon-name").value;
+  console.log("dupa");
+  renderPokemons(filterPokemons(pokemons, checked, text));
 }
 
 form.addEventListener("submit", submitForm);
