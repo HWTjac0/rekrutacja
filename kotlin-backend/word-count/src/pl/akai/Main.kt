@@ -28,5 +28,12 @@ fun main() {
             2. "tak" - 5
             3. "z" - 2
     */
-    println("Hello World!")
+    val words = sentences.joinToString(separator = " ")
+        .lowercase()
+        .split(" ")
+        .groupingBy { it }
+        .eachCount()
+        .entries.sortedByDescending { it.value }
+        .take(3);
+    println(words)
 }
