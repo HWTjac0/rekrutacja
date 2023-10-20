@@ -53,11 +53,12 @@ fun MainScreen() {
                     Trochę o stanie plus 3 sposoby na deklarowanie zmiennych
                     https://developer.android.com/jetpack/compose/state
         */
+        var value by remember { mutableStateOf("") }
         Text(text = "Rekrutacja")
         Spacer(modifier = Modifier.height(4.dp))
         TextField(
             value = "",
-            onValueChange = { /*todo 1.b przypisz tu swojej zmiennej wartość
+            onValueChange = {value = it /*todo 1.b przypisz tu swojej zmiennej wartość
                                                  it czyli lokalnej zmiennej tekstowej komponentu
                                                             przypisz swoją zmienną do value
                                                             */
@@ -77,7 +78,6 @@ fun MainScreen() {
             Kolejne zadanie znajdziesz poniżej.
             Podpowiedź poczytaj o Intent
 */
-
 /*  3.a TODO Kolejnym zadaniem jest wstawienie nowego przycisku
              do tego widoku. Przycisk należy wstawić tak, aby
              wyświetlał się pomiędzy TextFieldem, a przyciskiem o z napisem "Przycisk",
