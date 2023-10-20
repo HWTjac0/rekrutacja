@@ -1,6 +1,8 @@
 package com.example.rekrutacja
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.rekrutacja.databinding.ActivitySecondBinding
@@ -23,10 +25,16 @@ class SecondActivity : AppCompatActivity() {
 
         binding.apply {
             firstButton.setOnClickListener {
-                image.isVisible = false
+                hideButton()
             }
             secondButton.setOnClickListener {
-                image.isVisible = true
+                showButton()
+            }
+            bothButton.setOnClickListener {
+                toggleButton()
+            }
+            returnButton.setOnClickListener {
+                returnButton()
             }
         }
 
@@ -42,7 +50,6 @@ class SecondActivity : AppCompatActivity() {
                 litery, były pisane wielką literą.
                 Kolejne zadanie znajduje się poniżej.
          */
-
         /*5. TODO Ostatnie zadanie polega na dodaniu przycisku pozwalającego na przejście spowrotem
                 do MainActivity. Tutaj jednak nie chcemy, abyś otwierał nowe activity, tylko po
                 kliknięcku przycisku zamknął aktualne, ponieważ pod aktualnie wyświetlanym activity
@@ -55,5 +62,27 @@ class SecondActivity : AppCompatActivity() {
                 pamiętaj jednak, aby nie naruszyć tym kodu,
                 który realizuje poprzednich zadań. Nie jest to zadanie obowiązkowe.
          */
+    }
+    private fun showButton() {
+        if (binding.image.isVisible) {
+            val toast = Toast.makeText(this, "Obrazek jest widoczny", Toast.LENGTH_SHORT);
+            toast.show()
+        } else {
+            binding.image.isVisible = true;
+        }
+    }
+    private fun hideButton() {
+        if (!binding.image.isVisible) {
+            val toast = Toast.makeText(this, "Obrazek jest niewidoczny", Toast.LENGTH_SHORT);
+            toast.show()
+        } else {
+            binding.image.isVisible = false;
+        }
+    }
+    private fun toggleButton() {
+        binding.image.isVisible = !binding.image.isVisible;
+    }
+    private fun returnButton() {
+        this.finish();
     }
 }
