@@ -1,5 +1,6 @@
 package com.example.rekrutacja;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -24,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
                 onButtonClick();
             }
         });
+        binding.uppercaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onYourButtonClick();
+            }
+        });
     }
 
     /*1.TODO Pierwszym z zadań jest implementacja metody, w taki sposób, aby
@@ -34,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
           Podpowiedź poczytaj o Intent.
    */
     private void onButtonClick() {
-        binding.textView.setText(binding.editText.getText().toString());
+        Intent intent = new Intent(this, SecondActivity.class);
+        if(binding.editText.getText().toString().equals("AKAI")) {
+            startActivity(intent);
+        }
     }
 
     /*2.b TODO Druga część tego zadania polega na implementacji metody, która zmienia
@@ -45,6 +55,6 @@ public class MainActivity extends AppCompatActivity {
             Kolejne zadanie czeka na Ciebie w pliku SecondActiviy
      */
     private void onYourButtonClick() {
-
+        binding.textView.setText(binding.editText.getText().toString().toUpperCase());
     }
 }

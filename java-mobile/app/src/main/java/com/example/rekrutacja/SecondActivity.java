@@ -2,6 +2,7 @@ package com.example.rekrutacja;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,13 +30,42 @@ public class SecondActivity extends AppCompatActivity {
         binding.firstButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.image.setVisibility(View.GONE);
+                if (binding.image.getVisibility() == View.GONE) {
+                    CharSequence text = "Obrazek jest niewidoczny";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(SecondActivity.this, text, duration);
+                    toast.show();
+                } else {
+                    binding.image.setVisibility(View.GONE);
+                }
             }
         });
         binding.secondButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.image.setVisibility(View.VISIBLE);
+                if (binding.image.getVisibility() == View.VISIBLE) {
+                    CharSequence text = "Obrazek jest widoczny";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(SecondActivity.this, text, duration);
+                    toast.show();
+                } else {
+                    binding.image.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.bothButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int current_vis = binding.image.getVisibility();
+                binding.image.setVisibility(current_vis == View.GONE ? View.VISIBLE : View.GONE);
+            }
+        });
+
+        binding.returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

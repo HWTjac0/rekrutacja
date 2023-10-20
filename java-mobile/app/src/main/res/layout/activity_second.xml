@@ -18,13 +18,19 @@
         android:id="@+id/firstButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:text="Ukryj"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/secondButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:text="Pokaż"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/bothButton"
@@ -33,6 +39,11 @@
         android:layout_margin="8dp"
         android:text="Kliknij mnie" />
 
+    <Button
+        android:id="@+id/returnButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Powrót" />
 
 
 </LinearLayout>
