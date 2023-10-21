@@ -7,7 +7,36 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   padding: 0;
 }
-
+.main {
+  display: flex;
+}
+.heading {
+  font-size: 3.75em;
+}
+.subheading {
+  margin: 5px 0 10px 0;
+  font-size: 1.25em;
+  color: #8a8a8a;
+}
+.separator {
+  height: 5px;
+  width: 175px;
+  border-radius: 10px;
+  background: #E49B00;
+}
+.left {
+  min-width: 65%;
+  min-height: 100vh;
+  background-image: url("../img/c.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.right {
+  height: 100vh;
+  display: grid;
+  align-content: center;
+  padding: 10px 5%;
+}
 #task-frontend .basic-title {
   color: red;
 }
@@ -29,10 +58,12 @@ body {
 }
 #task-frontend input[type="text"], #task-frontend input[type="email"] {
   display: block;
-  border: 1px solid black;
+  border: 1px solid #c1c1c1;
+  background: #efefef;
   border-radius: 5px;
   width: 250px;
   height: 30px;
+  padding: 2px 5px;
 }
 
 #task-frontend span {
@@ -43,9 +74,12 @@ body {
   accent-color: orange;
 }
 
-#task-frontend input[type="submit"] {
-	color: green;
-	margin-top: 10px;
-	width: 100px;
-	height: 30px;
+.submitButton {
+  margin-top: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  background: #2E3D98;
+  border-radius: 16px;
+  padding: 10px 25px;
 }
