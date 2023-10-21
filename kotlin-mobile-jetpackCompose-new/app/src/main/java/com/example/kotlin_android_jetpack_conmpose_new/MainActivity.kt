@@ -1,5 +1,7 @@
 package com.example.kotlin_android_jetpack_conmpose_new
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kotlin_android_jetpack_conmpose_new.ui.theme.KotlinandroidjetpackconmposenewTheme
@@ -30,6 +33,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
+    val context = LocalContext.current;
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -57,7 +61,7 @@ fun MainScreen() {
         Text(text = "Rekrutacja")
         Spacer(modifier = Modifier.height(4.dp))
         TextField(
-            value = "",
+            value = value,
             onValueChange = {value = it /*todo 1.b przypisz tu swojej zmiennej wartość
                                                  it czyli lokalnej zmiennej tekstowej komponentu
                                                             przypisz swoją zmienną do value
@@ -66,7 +70,11 @@ fun MainScreen() {
             maxLines = 1
         )
         Spacer(modifier = Modifier.height(4.dp))
-        Button(onClick = { } ) {
+        Button(onClick = { value = makeTextUppercase(value) }) {
+            Text(text = "Kliknij mnie")
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+        Button(onClick = { runActivity(context, value) } ) {
             Text(text = "Przycisk")
         }
     }
@@ -78,6 +86,11 @@ fun MainScreen() {
             Kolejne zadanie znajdziesz poniżej.
             Podpowiedź poczytaj o Intent
 */
+fun runActivity(ctx: Context, textValue: String) {
+    if( textValue == "AKAI") {
+        Intent(ctx, SecondActivity::class.java).also { ctx.startActivity(it) }
+    }
+}
 /*  3.a TODO Kolejnym zadaniem jest wstawienie nowego przycisku
              do tego widoku. Przycisk należy wstawić tak, aby
              wyświetlał się pomiędzy TextFieldem, a przyciskiem o z napisem "Przycisk",
@@ -96,7 +109,9 @@ fun MainScreen() {
              do utworzonego przez Ciebie przycisku
              Kolejne zadanie czeka na Ciebie w pliku SecondActivity
 */
-
+fun makeTextUppercase(text: String): String {
+    return text.uppercase();
+}
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {

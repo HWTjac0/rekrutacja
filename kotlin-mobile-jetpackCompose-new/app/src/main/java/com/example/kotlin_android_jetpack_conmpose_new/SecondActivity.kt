@@ -1,6 +1,7 @@
 package com.example.kotlin_android_jetpack_conmpose_new
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -51,13 +53,27 @@ class SecondActivity: ComponentActivity() {
 
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        Button(onClick = { alpha = 0f}) {
-
+                        Button(onClick = {
+                            if(alpha == 0f) {
+                                Toast.makeText(this@SecondActivity, "Obrazek jest niewidoczny", Toast.LENGTH_SHORT)
+                                    .also { it.show() };
+                            } else {
+                                alpha = 0f;
+                            }
+                        }) {
+                            Text(text = "Ukryj")
                         }
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        Button(onClick = { alpha = 1f }) {
-
+                        Button(onClick = {
+                            if(alpha == 1f) {
+                                Toast.makeText(this@SecondActivity, "Obrazek jest widoczny", Toast.LENGTH_SHORT)
+                                    .also { it.show() };
+                            } else {
+                                alpha = 1f;
+                            }
+                        }) {
+                            Text(text = "Pokaż")
                         }
                         Spacer(modifier = Modifier.height(16.dp))
 
@@ -86,8 +102,11 @@ class SecondActivity: ComponentActivity() {
                                 pamiętaj jednak, aby nie naruszyć tym kodu,
                                 który realizuje poprzednich zadań. Nie jest to zadanie obowiązkowe.
                       */
-                        Button(onClick = {  }) {
-
+                        Button(onClick = { alpha = if (alpha == 1f) 0f else 1f  }) {
+                            Text(text = "Przełącz")
+                        }
+                        Button(onClick = { finish() }) {
+                            Text(text = "Powrót")
                         }
 
                     }
